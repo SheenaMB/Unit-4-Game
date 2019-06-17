@@ -3,15 +3,20 @@
 var randomGoalNumber;
 var lose = 0;
 var win = 0;
-var userScore = 0;
+var userScore;
 
-// function start();
+function start() {
+    randomGoalNumber = Math.floor(Math.random() * 101 + 19);
+    $("#randomNumber").text("Goal Number: " + randomGoalNumber);
+    userScore = 0;
+
+}
+
+start();
 
 //start of game randomly generate number; this is the random GOAL number
-randomGoalNumber = Math.floor(Math.random() * 101 + 19);
-//this puts "Random Number" into the text  
-$("#randomNumber").text("Goal Number: " + randomGoalNumber);
 
+//this puts "Random Number" into the text  
 //assigning four crystals random numbers as well between 1-12.
 for (var i = 0; i < 4; i++) {
 
@@ -38,12 +43,17 @@ $(".crystal").on('click', function () {
 
     if (userScore === randomGoalNumber){
         alert("you win");
-        $("#totalScore").text("Win: " + win);
-        win++;
+        $("#wins").text("Win: " + ++win);
+        userScore = 0;
+        $("#userScore").text("Your Score: 0");
+        start();
+
     } else if (userScore > randomGoalNumber){
         alert("you lose");
-        $("#totalScore").text("Lose: " + lose);
-        lose++;
+        $("#losses").text("Lose: " + ++lose);
+        userScore = 0;
+        $("#userScore").text("Your Score: 0");
+        start( );
 
     }
 

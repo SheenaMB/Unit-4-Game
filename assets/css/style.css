@@ -9,6 +9,7 @@
     justify-content: center;
     margin: 40px;
     border: 2px solid pink;
+    width: 600px;
 }
 
 .crystals {
@@ -24,6 +25,10 @@
     width: 200px;
     justify-content: space-around;
 }
-.score{
-    
+.score{ 
+    border: 2px solid purple;
+    margin: auto;
+    width: 70px;
+    height: 30px;
+
 }

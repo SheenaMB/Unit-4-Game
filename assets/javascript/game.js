@@ -12,6 +12,7 @@ function start() {
     $("#randomNumber").text("Goal Number: " + randomGoalNumber);
     userScore = 0;
     crystalValues = [];
+
     for (var i = 0; i < 4; i++) {
 
         var randomCN = Math.floor(Math.random() * 11 + 1);
@@ -22,17 +23,10 @@ function start() {
 
 start();
 
-//start of game randomly generate number; this is the random GOAL number
-
-//this puts "Random Number" into the text  
-//assigning four crystals random numbers as well between 1-12.
-
-//create score box and .text the random number when clicked.  
-
 //each time you click on a crystal, the value is assigned to a new var 
 $(".crystal-pic").on('click', function () {
     var crystalIndex = parseInt($(this).attr("value"));
-
+    //allows crystalValue to look up the random number in the array created.
     crystalValue = crystalValues[crystalIndex];
 
     // this adds the crystal value to the userScore
@@ -42,14 +36,14 @@ $(".crystal-pic").on('click', function () {
     $("#userScore").text("Your Score: " + userScore);
 
     if (userScore === randomGoalNumber) {
-        alert("you win");
+        alert("You won!");
         $("#wins").text("Win: " + ++win);
         userScore = 0;
         $("#userScore").text("Your Score: 0");
         start();
 
     } else if (userScore > randomGoalNumber) {
-        alert("you lose");
+        alert("Bummer..you lost.");
         $("#losses").text("Lose: " + ++lose);
         userScore = 0;
         $("#userScore").text("Your Score: 0");

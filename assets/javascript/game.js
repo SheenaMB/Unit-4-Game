@@ -4,12 +4,20 @@ var randomGoalNumber;
 var lose = 0;
 var win = 0;
 var userScore;
+var crystalValues;
 
 function start() {
+
     randomGoalNumber = Math.floor(Math.random() * 101 + 19);
     $("#randomNumber").text("Goal Number: " + randomGoalNumber);
     userScore = 0;
+    crystalValues = [];
+    for (var i = 0; i < 4; i++) {
 
+        var randomCN = Math.floor(Math.random() * 11 + 1);
+        crystalValues.push(randomCN);
+        console.log(randomCN);
+    }
 }
 
 start();
@@ -18,22 +26,14 @@ start();
 
 //this puts "Random Number" into the text  
 //assigning four crystals random numbers as well between 1-12.
-for (var i = 0; i < 4; i++) {
 
-    var randomCN = Math.floor(Math.random() * 11 + 1);
-    console.log(randomCN);
-
-    var crystal = $("<div>");
-    crystal.addClass('crystal');
-    crystal.attr('value', randomCN);
-    $(".crystals").append(crystal);
-
-}
 //create score box and .text the random number when clicked.  
 
 //each time you click on a crystal, the value is assigned to a new var 
-$(".crystal").on('click', function () {
-    var crystalValue = parseInt($(this).attr("value"));
+$(".crystal-pic").on('click', function () {
+    var crystalIndex = parseInt($(this).attr("value"));
+
+    crystalValue = crystalValues[crystalIndex];
 
     // this adds the crystal value to the userScore
     userScore = userScore + crystalValue;
@@ -41,19 +41,19 @@ $(".crystal").on('click', function () {
     //create score box and .text the random number when clicked.
     $("#userScore").text("Your Score: " + userScore);
 
-    if (userScore === randomGoalNumber){
+    if (userScore === randomGoalNumber) {
         alert("you win");
         $("#wins").text("Win: " + ++win);
         userScore = 0;
         $("#userScore").text("Your Score: 0");
         start();
 
-    } else if (userScore > randomGoalNumber){
+    } else if (userScore > randomGoalNumber) {
         alert("you lose");
         $("#losses").text("Lose: " + ++lose);
         userScore = 0;
         $("#userScore").text("Your Score: 0");
-        start( );
+        start();
 
     }
 
